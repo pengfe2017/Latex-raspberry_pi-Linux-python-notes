@@ -1,0 +1,14 @@
+*.aux
+*.log
+*.lof
+*.lot
+*.out
+*.gz
+*.toc
+FileTransferFromWindows
+FileTransferFromWindows/
+*.jpg
+*.png
+*.jpeg
+*.snm
+*.nav

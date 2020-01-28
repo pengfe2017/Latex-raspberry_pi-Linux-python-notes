@@ -1,0 +1,25 @@
+\documentclass[UTF8,fancyhdr,a4paper]{ctexbeamer}
+
+% Title page setup: The following is for titlepage setup 
+\title{中文latex排版用法笔记-ctex,XeTeX,Linux}
+\author{李鹏飞}
+\date{2019-12-15}
+
+
+%%==========================================================
+%\usepackage{ctex} %使用了 ctexbeamer，就不用这个package了。
+\usepackage{tikz} %绘图命令
+\usetheme{PaloAlto}% 设置主题
+%%==========================================================
+
+
+\begin{document}
+\section{第一节}
+\begin{frame}{中文$beamer$}
+画条线:\\
+\begin{tikzpicture}[scale=1,line width=2pt]
+\draw  (-1,0)--(4,0);
+\end{tikzpicture}
+中文处理
+\end{frame}
+\end{document} 

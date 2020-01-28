@@ -1,0 +1,230 @@
+\documentclass[UTF8,fancyhdr,a4paper]{ctexart}
+
+% Title page setup: The following is for titlepage setup 
+\title{Linux notes}
+\author{李鹏飞}
+\date{2020-01-01}
+
+% Margin setup: Set up margin using geometry package
+\usepackage[margin = 1in]{geometry}
+
+% Header footer setup: Fancyhdr package sets the header and footer
+\usepackage{fancyhdr}
+\setlength{\headheight}{40pt}% if you don't have this command, warning for \headheight is too small will appear.
+\pagestyle{fancy}% also controls the toc tof tot pages
+
+% 2nd way of setting header
+%\pagestyle{myheadings} % this command conflict with the command above
+%\markright {李鹏飞\hfill 业余爱好 \hfill}% with the command above, this sets the header
+
+% Fancyhdr details setup
+%\fancyhead[l]{我的Logo}% 2nd way of setting header and footer 
+\lhead{\includegraphics[width = 1cm]{YinYang.jpg}} % lhead = left head setup
+\fancyhead[c]{文档名称}
+\fancyhead[r]{文档密级}
+\lfoot{12-21-2019}
+\cfoot{保密信息，未经授权禁止扩散}
+\rfoot{page number}
+\usepackage{lastpage}% Use lastpage information
+\rfoot{第\thepage 页，共 \pageref{LastPage} 页}
+\renewcommand{\footrulewidth}{1pt}% header line width control
+\renewcommand{\headrulewidth}{1pt}% footer line width control
+
+% Table of content setup
+\usepackage{tocloft}
+\tocloftpagestyle{fancy}% to use fancy header and footer, otherwise the tocloft package will overdrive the fancy page setup.
+%\usepackage[titles]{tocloft}
+
+\usepackage[xetex]{hyperref}
+\usepackage{xcolor}
+\newcommand{\pflred}[1]{\textcolor{red}{#1}}
+
+\begin{document}
+
+%Making title page
+\begin{titlepage}
+\maketitle
+\pagenumbering{gobble}
+\centering
+\vspace{10cm}
+\includegraphics[width = 0.2\textwidth]{YinYang.jpg}\par
+\vspace{1cm}
+{\huge pengfei.li2017@outlook.com}\par
+\vspace{0.5cm}
+{\small 版权所有，侵权必究}\par
+\vspace{0.5cm}
+{\scshape \small All Rights Reserved}
+\end{titlepage}
+
+%Decorating toc page
+\pagenumbering{roman} % Sets page number in toc, tot, tof
+\tableofcontents
+\addcontentsline{toc}{section}{目录}%note section here in the second bracket
+\clearpage
+\listoffigures
+\addcontentsline{toc}{section}{插图}
+%\addcontentsline{toc}{chapter}{List of Figures}
+\clearpage
+\listoftables
+\addcontentsline{toc}{section}{表格}
+%\addcontentsline{toc}{chapter}{List of Tables}
+\clearpage
+
+%Writing your document here
+\newpage
+\pagenumbering{arabic}
+\section{Linux common commands}
+
+\subsection{Notes on 20200101}
+
+\subsubsection{check ip addresses of all users in local subnet}
+
+sudo nmap -sn 192.168.0.0/24\\
+results:\\
+Starting Nmap 7.60 ( https://nmap.org ) at 2020-01-01 17:14 CST\\
+Nmap scan report for \_ gateway (192.168.0.1)\\
+Host is up (0.0043s latency).\\
+MAC Address: C8:3A:35:2B:6C:38 (Tenda Technology)\\
+Nmap scan report for 192.168.0.100\\
+Host is up (0.0040s latency).\\
+MAC Address: 94:9F:3E:C3:E1:BD (Sonos)\\
+Nmap scan report for 192.168.0.101
+Host is up (0.19s latency).\\
+MAC Address: 9C:2E:A1:2E:D8:84 (Unknown)\\
+Nmap scan report for 192.168.0.103\\
+Host is up (-0.053s latency).\\
+MAC Address: F4:63:1F:F6:66:43 (Unknown)\\
+Nmap scan report for 192.168.0.108\\
+Host is up (0.076s latency).\\
+MAC Address: BC:83:85:C7:27:73 (Microsoft)\\
+Nmap scan report for 192.168.0.109\\
+Host is up (0.076s latency).\\
+MAC Address: B8:27:EB:26:81:1F (Raspberry Pi Foundation)\\
+Nmap scan report for 192.168.0.110\\
+Host is up (0.076s latency).\\
+MAC Address: A0:51:0B:87:5E:C4 (Unknown)\\
+Nmap scan report for pengfei-KLV-WX9 (192.168.0.107)\\
+Host is up.\\
+Nmap done: 256 IP addresses (8 hosts up) scanned in 4.61 seconds\\
+
+\subsection{Linux remote desktop windows10 home edition}
+windows10 home edition 不允许 remote desktop，虽然系统有这个选项询问你是否允许 remote desktop，但是在另一个地方又告诉你 home edition 是没有这个功能的。
+以下是解决方案：
+\begin{enumerate}
+\item 使用 TightVNC:
+网址：\url{https://www.tightvnc.com/download.php}
+在 windows10 直接安装 TightVNC，一路安装不用改任何东西，安装完毕。设置require authentication，设置密码。\\
+\pflred
+{TightVNC 的一些问题：
+\begin{itemize}
+\item VNC 有些时候不稳定，需要重启系统，有可能是 VPN 的问题。
+\item VNC 用 laptop 的 touch pad 右键不好使，只能用鼠标。
+\end{itemize}
+}
+
+
+
+\item 使用 RDPwrapper 在 github 下又下载:\\
+不推荐这个使用方法，CSDN 上很多人反映不可用，而且下载的时候 chrome 会报错。另外还有修改注册表的，不推荐使用。
+\item 在 linux 系统下安装 remmina:\\
+sudo apt-get install remmina remmina-plugin-*\\
+注意尽量需找 apt-get 支持的语句，snap 和 dnf 都不好用，估计是支持其他 linux distro 的。
+
+
+
+
+\end{enumerate}
+
+\subsection{Windows10 remote linux}
+需要注意的是我的 raspberryPi 直接允许 VNC 即可，直接通过正常的 windows remote desktop 即可远程登录。但是elementory os 不具有这个功能，于是需要安装。
+\begin{enumerate}
+\item 在 linux 上直接安装 xrpd：sudo apt-get install xrdp。
+\item 直接登录，出现内部错误：这个是由于 VPN 的作用，关掉在开启即可。
+\item 登录之后发现闪退：这是由于 linux 没有安装 xfce4。\\ sudo apt-get install xfce4。\par
+百度搜索，通过 windows RDP 连接 Linux。
+
+\pflred{如果这时候出现所说的Ubuntu安中装的xrdp，桌面共享设置为允许，虚拟机设置的是桥接，虚拟机内外可以互相ping 通；
+在Windows下用 mstsc 连接Ubuntu桌面，跳出账号密码页面，登录后自动退出（闪退）的解决方法：sudo apt-get install xfce4
+echo xfce4-session > \~/.xsession
+touch .session
+sudo vim /etc/xrdp/startwm.sh
+在. /etc/X11/Xsession前面加
+xfce4-session
+然后重启 sudo service xrdp restart。}
+
+
+\end{enumerate}
+
+
+\subsection{查找文档命令 find}
+
+find + [target directory] + [options] + [file or folder name]:
+\begin{enumerate}
+\item
+target directory:
+Period (.): Specifies the current and all nested folders.
+Forward Slash (/): Specifies the entire filesystem.
+Tilde (\~): Specifies the active user's home directory.
+\item
+options:
+-name or -atime n
+\item
+file or folder name:
+* start sign represents wild card.
+\item
+one example:
+
+find . -name *.tex
+\item
+reference:
+\url	{https://www.lifewire.com/uses-of-linux-command-find-2201100}
+
+
+\end{enumerate}
+
+
+
+\newpage
+\section{Raspberry Pi: Pi Model 3B+ V1.3}
+\subsection{Functions and commands}
+\begin{enumerate}
+\item check Raspberry Pi information: \textit{pinout}
+\end{enumerate}
+\subsection{Transfer file to and from pi (or Linux system)}
+Detailed information can be referenced to \url{https://www.raspberrypi.org/documentation/remote-access/}. 具体来说有一下几种形式：
+\begin{enumerate}
+\item Between Linux and Windows: SFTP，SSH File Transfer Protocal. 本质来说人然是 SSH 服务，Linux 系统需要开启 SSH 服务。\textcolor{red}{Windows 系统安装 WinSCP}。
+\item Between Linux and Linux: 同上 SFTP，\textcolor{red}{不过这时候推荐 FileZilla}.
+\item Between Linux and Linux: 除了上述 SFTP 之外，还可以使用 SCP，Secure Copy 来使用。比如：scp myfile.txt pi@192.168.0.100：(这里是 destination directory, 该语句代表 /home/pi，如果是其他 directory，只需要在：后边加上制定的 directory 即可。) Copying from remote directory to local directory: scp pi@192.168.0.100：myfile.txt. 
+
+
+\end{enumerate}
+
+
+\newpage
+\section{Git file management}
+\subsection{将 Local folder push 到 git repo}
+一般来说，git repo 在网站上直接创建，然后在 local directory 当中使用 git clone 命令进行下载，如果不存在 git cloud 端的 directory 怎么办呢？\\
+
+
+
+\newpage
+\section{第二个Section}
+
+\subsection{接下来要做的事情}
+\begin{enumerate}
+\item 1
+\item 2
+
+
+\end{enumerate}
+
+\newpage
+\section{第三个Section}
+
+\newpage
+\section{第四个Section}
+
+
+
+\end{document}

@@ -1,0 +1,104 @@
+\documentclass[UTF8,fancyhdr,a4paper]{ctexart}
+
+% Title page setup: The following is for titlepage setup 
+\title{Python programming notes}
+\author{李鹏飞}
+\date{2020-01-04}
+
+% Margin setup: Set up margin using geometry package
+\usepackage[margin = 1in]{geometry}
+
+% Header footer setup: Fancyhdr package sets the header and footer
+\usepackage{fancyhdr}
+\setlength{\headheight}{40pt}% if you don't have this command, warning for \headheight is too small will appear.
+\pagestyle{fancy}% also controls the toc tof tot pages
+
+% 2nd way of setting header
+%\pagestyle{myheadings} % this command conflict with the command above
+%\markright {李鹏飞\hfill 业余爱好 \hfill}% with the command above, this sets the header
+
+% Fancyhdr details setup
+%\fancyhead[l]{我的Logo}% 2nd way of setting header and footer 
+\lhead{\includegraphics[width = 1cm]{YinYang.jpg}} % lhead = left head setup
+\fancyhead[c]{文档名称}
+\fancyhead[r]{文档密级}
+\lfoot{12-21-2019}
+\cfoot{保密信息，未经授权禁止扩散}
+\rfoot{page number}
+\usepackage{lastpage}% Use lastpage information
+\rfoot{第\thepage 页，共 \pageref{LastPage} 页}
+\renewcommand{\footrulewidth}{1pt}% header line width control
+\renewcommand{\headrulewidth}{1pt}% footer line width control
+
+% Table of content setup
+\usepackage{tocloft}
+\tocloftpagestyle{fancy}% to use fancy header and footer, otherwise the tocloft package will overdrive the fancy page setup.
+%\usepackage[titles]{tocloft}
+
+\usepackage[xetex]{hyperref}
+\usepackage{xcolor}
+\newcommand{\pflred}[1]{\textcolor{red}{#1}}
+
+\begin{document}
+
+%Making title page
+\begin{titlepage}
+\maketitle
+\pagenumbering{gobble}
+\centering
+\vspace{10cm}
+\includegraphics[width = 0.2\textwidth]{YinYang.jpg}\par
+\vspace{1cm}
+{\huge pengfei.li2017@outlook.com}\par
+\vspace{0.5cm}
+{\small 版权所有，侵权必究}\par
+\vspace{0.5cm}
+{\scshape \small All Rights Reserved}
+\end{titlepage}
+
+%Decorating toc page
+\pagenumbering{roman} % Sets page number in toc, tot, tof
+\tableofcontents
+\addcontentsline{toc}{section}{目录}%note section here in the second bracket
+\clearpage
+\listoffigures
+\addcontentsline{toc}{section}{插图}
+%\addcontentsline{toc}{chapter}{List of Figures}
+\clearpage
+\listoftables
+\addcontentsline{toc}{section}{表格}
+%\addcontentsline{toc}{chapter}{List of Tables}
+\clearpage
+
+%Writing your document here
+\newpage
+\pagenumbering{arabic}
+%————————————————————————————————————————————————————————————主要内容
+\section{Python 图像处理}
+\subsection{20200104 Image2ExcelData}
+
+%————————————————————————————————————————————————————————————IPython
+\newpage
+\section{IPython}
+\subsection{Useful commands}
+execute commands in IPython like in window cmd or linux Terminal.
+\begin{itemize}
+\item
+\%cd：改变当前的工作目录
+\item
+\%edit：打开编辑器，并关闭编辑器后执行键入的代码
+\item
+\%env：显示当前环境变量
+\item
+\%pip install [pkgs]：无需离开交互式shell，就可以安装软件包
+\item
+\%time 和 \%timeit：测量执行Python代码的时间
+\end{itemize}
+
+
+
+
+
+
+
+\end{document}

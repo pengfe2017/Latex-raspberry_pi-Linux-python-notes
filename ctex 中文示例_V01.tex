@@ -1,0 +1,139 @@
+\documentclass[UTF8,fancyhdr,a4paper]{ctexart}
+
+% Title page setup: The following is for titlepage setup 
+\title{中文latex排版用法笔记-ctex,XeTeX,Linux}
+\author{李鹏飞}
+\date{2019-12-15}
+
+% Margin setup: Set up margin using geometry package
+\usepackage[margin = 1in]{geometry}
+
+% Header footer setup: Fancyhdr package sets the header and footer
+\usepackage{fancyhdr}
+\setlength{\headheight}{40pt}% if you don't have this command, warning for \headheight is too small will appear.
+\pagestyle{fancy}% also controls the toc tof tot pages
+
+% 2nd way of setting header
+%\pagestyle{myheadings} % this command conflict with the command above
+%\markright {李鹏飞\hfill 业余爱好 \hfill}% with the command above, this sets the header
+
+% Fancyhdr details setup
+%\fancyhead[l]{我的Logo}% 2nd way of setting header and footer 
+\lhead{\includegraphics[width = 1cm]{YinYang.jpg}} % lhead = left head setup
+\fancyhead[c]{文档名称}
+\fancyhead[r]{文档密级}
+\lfoot{12-21-2019}
+\cfoot{保密信息，未经授权禁止扩散}
+\rfoot{page number}
+\usepackage{lastpage}% Use lastpage information
+\rfoot{第\thepage 页，共 \pageref{LastPage} 页}
+\renewcommand{\footrulewidth}{1pt}% header line width control
+\renewcommand{\headrulewidth}{1pt}% footer line width control
+
+% Table of content setup
+\usepackage{tocloft}
+\tocloftpagestyle{fancy}% to use fancy header and footer, otherwise the tocloft package will overdrive the fancy page setup.
+%\usepackage[titles]{tocloft}
+
+\usepackage[xetex]{hyperref}
+
+\begin{document}
+
+%Making title page
+\begin{titlepage}
+\maketitle
+\pagenumbering{gobble}
+\centering
+\vspace{10cm}
+\includegraphics[width = 0.2\textwidth]{YinYang.jpg}\par
+\vspace{1cm}
+{\huge pengfei.li2017@outlook.com}\par
+\vspace{0.5cm}
+{\small 版权所有，侵权必究}\par
+\vspace{0.5cm}
+{\scshape \small All Rights Reserved}
+\end{titlepage}
+
+%Decorating toc page
+\pagenumbering{roman} % Sets page number in toc, tot, tof
+\tableofcontents
+\addcontentsline{toc}{section}{目录}%note section here in the second bracket
+\clearpage
+\listoffigures
+\addcontentsline{toc}{section}{插图}
+%\addcontentsline{toc}{chapter}{List of Figures}
+\clearpage
+\listoftables
+\addcontentsline{toc}{section}{表格}
+%\addcontentsline{toc}{chapter}{List of Tables}
+\clearpage
+
+%Writing your document here
+\newpage
+\pagenumbering{arabic}
+\section{ctex macro 下的模板设置}
+
+\subsection{Title page 的设置}
+使用 begin titlepage 环境，对 title page 进行自定义设置，如图片的插入等;
+\subsection{Header 和 Footer 的设置}
+这里使用了 fancyhdr package。注意 Lastpage package 的使得 left pagefoot 的页码特特效，第 X 页，共 X 页;
+\subsection{toc 或者目录的设置}
+使用了 tocloft package。注意这个 package 会覆盖 fancyhdr 的功能，需要命令 tocloftpagestyle（fancy），强行保留 fancyhdr 的功能;\par
+hyperef 的使用：注意在 xelatex 编辑环境下。\textbackslash usepackage [xetex] \{ hyperref \},注意 [\space] 中间的选项一定要添加 xetex。\par 
+意外发现：\textbackslash[ \space ]\textbackslash ，中间竟然可以输入公式。如下：
+\[ x = y^2 \]
+
+
+\subsection{特殊字符的输入}
+
+\begin{enumerate}
+\item
+字符输入：一般使用 \textbackslash \space 作为前导。比如 \{ 的输入：Latex 命令为，\textbackslash \{。
+
+\item 
+\S \space dollar sign 的使用: 成对使用，用于输入公式，例子如下：
+Inline equations input: \$some equations\$, e.g. $\partial T^2/\partial x^2 + \partial T^2/\partial y^2 =\frac{k}{\rho*c_p}*{\partial T/\partial t} $
+
+\item
+\textasciitilde 符号的输入有些特殊，必须加入 ascii 关键词：\textbackslash textasciitilde
+
+\end{enumerate}
+
+\subsection{字体的基本设置}
+
+
+
+%\addcontentsline{toc}{section}{目录} 这个命令将 toc，tof，tot都加入了目录页中。
+\subsection{页码的设置}
+使用命令：\textbackslash pagenumbering \{ gobble \}
+
+\newpage
+\section{第二个Section}
+
+\subsection{接下来要做的事情}
+\begin{enumerate}
+\item
+URL 的输入: 对于 XeLatex + View PDF 设置，在 preamble 当中使用：\\
+\textbackslash usepackage[xetex]\{hyperref\}，在具体的语句使用例如：\\ \url{https://www.lifewire.com/uses-of-linux-command-find-2201100}
+\item
+Texworks 的 Linux 安装
+\item
+Bibliography 的引入
+\item
+图片的插入及基本设计
+\item
+表格的插入及基本设置
+
+
+
+\end{enumerate}
+
+\newpage
+\section{第三个Section}
+
+\newpage
+\section{第四个Section}
+
+
+
+\end{document}
