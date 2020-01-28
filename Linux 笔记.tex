@@ -205,7 +205,14 @@ Detailed information can be referenced to \url{https://www.raspberrypi.org/docum
 \section{Git file management}
 \subsection{将 Local folder push 到 git repo}
 一般来说，git repo 在网站上直接创建，然后在 local directory 当中使用 git clone 命令进行下载，如果不存在 git cloud 端的 directory 怎么办呢？\\
-
+参照：\url{https://help.github.com/en/github/
+importing-your-projects-to-github/adding-an-existing-project-to-github-using-the-command-line}
+\begin{enumerate}
+\item Create a new repository. \textcolor{blue}{这一步是必须的，如果 git 网站没有这个 repository，push 会出现各种错误。}
+\item Locally git init.
+\item git add . and git commit
+\item git remote add origin remote (repo URL, this URL can be SSH or HTTP, SSH will be better, it won't ask your credentials everytime.)
+\end{enumerate}
 
 
 \newpage
