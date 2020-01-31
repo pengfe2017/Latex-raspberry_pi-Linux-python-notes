@@ -1,7 +1,7 @@
-\documentclass[UTF8,fancyhdr,a4paper]{ctexbeamer}
+\documentclass[UTF8,aspectratio = 169]{ctexbeamer}
 
 % Title page setup: The following is for titlepage setup 
-\title{中文latex排版用法笔记-ctex,XeTeX,Linux}
+\title{中文latex beamer 排版用法笔记-ctex,XeTeX,Linux}
 \author{李鹏飞}
 \date{2019-12-15}
 
@@ -15,11 +15,27 @@
 
 \begin{document}
 \section{第一节}
+\begin{frame}{beamer slide page size}
+\begin{enumerate}
+\item Office PPT: 4:3 aspect ratio, page size = 25.4cm, 19.05cm; 16:9 aspect ratio, page size = 33.867cm, 19.05cm (宽屏设置).
+\item Beamer: in \textbackslash documentclass[Options], Options here = [aspectratio = 169], which means 160mm by 90mm. For details, you can check beamer user guide, chapter 8, Frame and Margin Sizes.
+\end{enumerate}
+\end{frame}
+
+
 \begin{frame}{中文$beamer$}
 画条线:\\
 \begin{tikzpicture}[scale=1,line width=2pt]
 \draw  (-1,0)--(4,0);
 \end{tikzpicture}
-中文处理
+
+明天要做的事情：
+
+\begin{enumerate}
+\item beamer 的格式具体设置。
+\item Python pytorch 数据处理。
+\item Python Raspberry pi 的命令function， 重新整理。
+\end{enumerate}
+
 \end{frame}
 \end{document} 

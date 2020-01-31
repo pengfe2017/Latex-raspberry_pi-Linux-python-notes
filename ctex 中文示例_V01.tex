@@ -107,6 +107,17 @@ Inline equations input: \$some equations\$, e.g. $\partial T^2/\partial x^2 + \p
 \subsection{页码的设置}
 使用命令：\textbackslash pagenumbering \{ gobble \}
 
+
+\newpage
+\section{疑难杂症的处理}
+\subsection{Super long url}
+查阅了相关资料发现，有的人用 package hyphen，但是我这里 ctex 不管用，如能用如下方法：
+
+参照一下url链接（正确做法，用\textbackslash begin\{sloppypar\} \textbackslash end\{sloppypar\}：\begin{sloppypar}\url{https://help.github.com/en/github/importing-your-projects-to-github/adding-an-existing-project-to-github-using-the-command-line}\end{sloppypar}
+
+如果不使用上述方法：你会看到一下很长的url：\url{https://help.github.com/en/github/importing-your-projects-to-github/adding-an-existing-project-to-github-using-the-command-line}
+
+
 \newpage
 \section{第二个Section}
 

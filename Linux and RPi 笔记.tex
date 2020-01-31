@@ -1,7 +1,7 @@
 \documentclass[UTF8,fancyhdr,a4paper]{ctexart}
 
 % Title page setup: The following is for titlepage setup 
-\title{Linux notes}
+\title{Linux and RPi notes}
 \author{李鹏飞}
 \date{2020-01-01}
 
@@ -39,6 +39,20 @@
 \usepackage{xcolor}
 \newcommand{\pflred}[1]{\textcolor{red}{#1}}
 
+
+%============================================= packages
+
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[xetex]{hyperref}
+%\usepackage[hyphenbreaks]{breakurl}
+\usepackage[hyphens]{url}
+
+
+%============================================= packages
+
+
+
+
 \begin{document}
 
 %Making title page
@@ -69,6 +83,9 @@
 \addcontentsline{toc}{section}{表格}
 %\addcontentsline{toc}{chapter}{List of Tables}
 \clearpage
+
+
+
 
 %Writing your document here
 \newpage
@@ -185,7 +202,43 @@ reference:
 
 
 \newpage
+
+\section{Linux Screen APP 用法}
+\pflred{Screen 是一个非常重要的 APP，可以在 Session/Terminal 关闭的时候，仍然在后台运行}，相当于我以前使用的命令：\textit{nohup python3 xx.py \&}
+\subsection{键盘命令(直接 prcess 键盘) ctl A + key 系列}
+例如：ctr A + k，是 kill 当前的命令。具体如下：
+\begin{enumerate}
+\item ctr A + k: kill the current screen.
+\item ctr A + ?: help window for ctr A commands.
+\item ctr A + [ or escapekey: start copy mode, you can use arrow key to move up and down, if you press enter key, they you are selecting something for copy. If you don't want any copy, press escape key again.
+\item ctr A + ]: paste the selected things.
+\item reference: google scroll inside screen or pause output.
+\end{enumerate}
+\subsection{Console 命令 （在 console 当中输入） screen -[key]}
+例如：screen -ls:list all screens active.具体如下：
+\begin{enumerate}
+\item screen -list: = screen -ls
+\item screen -S screenname: create a screen with a name "screenname"
+\item screen: create a screen without a specified name, but the system will automatically assign a name to the screen.
+\item screen -d screenid/screenname: detach a screen locally or remotely. If you have a session running locally, you have to start a new terminal somewhere else to detach it.
+\item screen -r screenid/screenname: reattach a screen.
+\item reference: google 15 linux screen command for dealing terminal sessions.
+\end{enumerate}
+
 \section{Raspberry Pi: Pi Model 3B+ V1.3}
+\subsection{Check hostname and other information}
+\textcolor{red}{hostnamectl:}\\
+   Static hostname: pengfei-KLV-WX9\\
+         Icon name: computer-laptop\\
+           Chassis: laptop\\
+        Machine ID: 82aadb731d60458194911154ce5fef65\\
+           Boot ID: 4405f29ae34248918f4b9b3b6d387a8b\\
+  Operating System: elementary OS 5.0 Juno\\
+            Kernel: Linux 4.15.0-70-generic\\
+      Architecture: x86-64\\
+\textcolor{red}{whoami:} this command is to check my username.
+\subsection{Login to pi with ssh}
+Using command: ssh pi@IPAddress, here pi is your user name, you can check ipaddress with command, \textit{hostname -I}. ssh is in small case.
 \subsection{Functions and commands}
 \begin{enumerate}
 \item check Raspberry Pi information: \textit{pinout}
@@ -198,6 +251,8 @@ Detailed information can be referenced to \url{https://www.raspberrypi.org/docum
 \item Between Linux and Linux: 除了上述 SFTP 之外，还可以使用 SCP，Secure Copy 来使用。比如：scp myfile.txt pi@192.168.0.100：(这里是 destination directory, 该语句代表 /home/pi，如果是其他 directory，只需要在：后边加上制定的 directory 即可。) Copying from remote directory to local directory: scp pi@192.168.0.100：myfile.txt. 
 
 
+
+
 \end{enumerate}
 
 
@@ -205,8 +260,7 @@ Detailed information can be referenced to \url{https://www.raspberrypi.org/docum
 \section{Git file management}
 \subsection{将 Local folder push 到 git repo}
 一般来说，git repo 在网站上直接创建，然后在 local directory 当中使用 git clone 命令进行下载，如果不存在 git cloud 端的 directory 怎么办呢？\\
-参照：\url{https://help.github.com/en/github/
-importing-your-projects-to-github/adding-an-existing-project-to-github-using-the-command-line}
+参照：\begin{sloppypar}\url{https://help.github.com/en/github/importing-your-projects-to-github/adding-an-existing-project-to-github-using-the-command-line}\end{sloppypar}
 \begin{enumerate}
 \item Create a new repository. \textcolor{blue}{这一步是必须的，如果 git 网站没有这个 repository，push 会出现各种错误。}
 \item Locally git init.
