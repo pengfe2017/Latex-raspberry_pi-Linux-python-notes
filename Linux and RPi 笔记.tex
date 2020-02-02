@@ -90,6 +90,17 @@
 %Writing your document here
 \newpage
 \pagenumbering{arabic}
+\section{Linux/Elementary OS 在 Nvidia 安装之后的急救}
+\begin{enumerate}
+\item 安装完 Nvidia 显卡 driver 之后发现，系统无法正常启动，且在一个 command window 下反复循环。
+\item google 寻找了相关措施，也不能够解决问题。
+\item ctr alt F1 反复按压也结局不了问题。
+\item F12 is for booting bios for my Huawei Laptop.
+\item 胡乱按了一些 F1 键盘，终于进入 console，执行 sudo apt-get purge nvidia*
+
+\end{enumerate}
+
+
 \section{Linux common commands}
 
 \subsection{Notes on 20200101}

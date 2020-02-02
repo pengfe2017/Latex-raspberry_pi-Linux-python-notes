@@ -1,0 +1,104 @@
+\documentclass[UTF8,fancyhdr,a4paper]{ctexart}
+
+% Title page setup: The following is for titlepage setup 
+\title{Pytorch and Machine Learning}
+\author{李鹏飞}
+\date{2020-02-01}
+
+% Margin setup: Set up margin using geometry package
+\usepackage[margin = 1in]{geometry}
+
+% Header footer setup: Fancyhdr package sets the header and footer
+\usepackage{fancyhdr}
+\setlength{\headheight}{40pt}% if you don't have this command, warning for \headheight is too small will appear.
+\pagestyle{fancy}% also controls the toc tof tot pages
+
+% 2nd way of setting header
+%\pagestyle{myheadings} % this command conflict with the command above
+%\markright {李鹏飞\hfill 业余爱好 \hfill}% with the command above, this sets the header
+
+% Fancyhdr details setup
+%\fancyhead[l]{我的Logo}% 2nd way of setting header and footer 
+\lhead{\includegraphics[width = 1cm]{YinYang.jpg}} % lhead = left head setup
+\fancyhead[c]{文档名称}
+\fancyhead[r]{文档密级}
+\lfoot{12-21-2019}
+\cfoot{保密信息，未经授权禁止扩散}
+\rfoot{page number}
+\usepackage{lastpage}% Use lastpage information
+\rfoot{第\thepage 页，共 \pageref{LastPage} 页}
+\renewcommand{\footrulewidth}{1pt}% header line width control
+\renewcommand{\headrulewidth}{1pt}% footer line width control
+
+% Table of content setup
+\usepackage{tocloft}
+\tocloftpagestyle{fancy}% to use fancy header and footer, otherwise the tocloft package will overdrive the fancy page setup.
+%\usepackage[titles]{tocloft}
+%===============================================================
+\usepackage[xetex]{hyperref}
+\usepackage{xcolor}
+%===============================================================
+
+\begin{document}
+
+%Making title page
+\begin{titlepage}
+\maketitle
+\pagenumbering{gobble}
+\centering
+\vspace{10cm}
+\includegraphics[width = 0.2\textwidth]{YinYang.jpg}\par
+\vspace{1cm}
+{\huge pengfei.li2017@outlook.com}\par
+\vspace{0.5cm}
+{\small 版权所有，侵权必究}\par
+\vspace{0.5cm}
+{\scshape \small All Rights Reserved}
+\end{titlepage}
+
+%Decorating toc page
+\pagenumbering{roman} % Sets page number in toc, tot, tof
+\tableofcontents
+\addcontentsline{toc}{section}{目录}%note section here in the second bracket
+\clearpage
+\listoffigures
+\addcontentsline{toc}{section}{插图}
+%\addcontentsline{toc}{chapter}{List of Figures}
+\clearpage
+\listoftables
+\addcontentsline{toc}{section}{表格}
+%\addcontentsline{toc}{chapter}{List of Tables}
+\clearpage
+
+%Writing your document here
+\newpage
+\pagenumbering{arabic}
+\section{Pytorch 安装}
+在中国镜像要选清华，否则速度会非常的慢。
+\subsection{清华镜像设置命令}
+\begin{enumerate}
+\item conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch （设置 pytorch 的镜像，注意 \textcolor{red}{pytorch 镜像和 conda 镜像不是一个地方。} ）
+\item conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ (conda 自己的镜像)
+\item conda config --set show\_channel\_urls yes
+\item conda install pytorch torchvision cudatoolkit=10.1 -c pytorch (pytorch 按照相应环境生成的 conda 安装命令，注意，如果使用清华镜像，不必加 \textcolor{red}{-c pytorch})
+\item reference: \url{https://blog.csdn.net/xd_wjc/article/details/80587488}
+
+\end{enumerate}
+
+\newpage
+\section{Good References}
+\begin{enumerate}
+\item towards data science: \url{https://towardsdatascience.com}
+\item machine learning mastery: \url{https://machinelearningmastery.com}
+
+\end{enumerate}
+
+\newpage
+\section{第三个Section}
+
+\newpage
+\section{第四个Section}
+
+
+
+\end{document}
