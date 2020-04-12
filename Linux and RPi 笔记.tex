@@ -210,6 +210,19 @@ reference:
 
 \end{enumerate}
 
+\subsection{Copy file}
+
+The best way I found so far is to use: sftp pi@192.168.0.109, then using the same login password as in: ssh pi@192.168.0.109.
+Some common commands are listed below:
+\begin{enumerate}
+\item ls: ls list the remote directory. lls is for the local.
+\item pwd: present working directory. lpwd: local present working directory.
+\item get: copy a file into the current local working directory.
+
+\end{enumerate}
+
+
+
 
 
 \newpage
@@ -260,11 +273,16 @@ Detailed information can be referenced to \url{https://www.raspberrypi.org/docum
 \item Between Linux and Windows: SFTP，SSH File Transfer Protocal. 本质来说人然是 SSH 服务，Linux 系统需要开启 SSH 服务。\textcolor{red}{Windows 系统安装 WinSCP}。
 \item Between Linux and Linux: 同上 SFTP，\textcolor{red}{不过这时候推荐 FileZilla}.
 \item Between Linux and Linux: 除了上述 SFTP 之外，还可以使用 SCP，Secure Copy 来使用。比如：scp myfile.txt pi@192.168.0.100：(这里是 destination directory, 该语句代表 /home/pi，如果是其他 directory，只需要在：后边加上制定的 directory 即可。) Copying from remote directory to local directory: scp pi@192.168.0.100：myfile.txt. 
-
-
-
-
 \end{enumerate}
+
+\subsection{RPI 搭配 Django 网站框架问题及解决方案}
+\begin{enumerate}
+\item \emph{Importing the numpy c-extensions failed. and Original error was: libf77blas.so.3: cannot open shared object file: No such file or directory.} 错误解决方案：\textcolor{red}{sudo apt-get install libatlas-base-dev} 。原因很可能是 RPI 系统中缺少 libff77blas.so.3 的系统文件，我是通过 google 得出的这个解决方案。
+\end{enumerate}
+
+
+
+
 
 
 \newpage
