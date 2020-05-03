@@ -1,8 +1,8 @@
-\documentclass[UTF8,fancyhdr,a4paper]{ctexart}
+\documentclass{article}
 
 % Title page setup: The following is for titlepage setup
-\title{title title title title}
-\author{李鹏飞}
+\title{This is my title}
+\author{Pengfei Li}
 \date{2019.12.15}
 
 % Margin setup: Set up margin using geometry package
@@ -14,19 +14,21 @@
 \pagestyle{fancy}% also controls the toc tof tot pages
 
 % 2nd way of setting header
-%\pagestyle{myheadings} % this command conflict with the command above
+%\pagestyle{myhea\clearpagedings} % this command conflict with the command above
 %\markright {李鹏飞\hfill 业余爱好 \hfill}% with the command above, this sets the header
 
 % Fancyhdr details setup
 %\fancyhead[l]{我的Logo}% 2nd way of setting header and footer
-\lhead{\includegraphics[width = 1cm]{YinYang.jpg}} % lhead = left head setup
-\fancyhead[c]{文档名称}
-\fancyhead[r]{文档密级}
+\lhead{\includegraphics[width = 1cm]{YinYang.jpg}}
+%\lhead{\includegraphics{YinYang.jpg}}
+% lhead = left head setup
+\fancyhead[c]{Title}
+\fancyhead[r]{Classification}
 \lfoot{12.21.2019}
-\cfoot{保密信息，未经授权禁止扩散}
+\cfoot{Classified, distribute prohibited}
 \rfoot{page number}
 \usepackage{lastpage}% Use lastpage information
-\rfoot{第{\thepage} 页, 共\pageref{LastPage}页}
+\rfoot{page {\thepage} of~\pageref{LastPage}}
 \renewcommand{\footrulewidth}{1pt}% header line width control
 \renewcommand{\headrulewidth}{1pt}% footer line width control
 
@@ -35,11 +37,10 @@
 \tocloftpagestyle{fancy}% to use fancy header and footer, otherwise the tocloft package will overdrive the fancy page setup.
 %\usepackage[titles]{tocloft}
 
-\usepackage[xetex]{hyperref}
+\usepackage{hyperref}
 \usepackage{cite}
 \usepackage{listings}
 \usepackage{graphicx}
-
 
 \begin{document}
 
@@ -53,7 +54,7 @@
 \vspace{1cm}
 {\huge pengfei.li2017@outlook.com}\par
 \vspace{0.5cm}
-{\small 版权所有，侵权必究}\par
+% {\small 版权所有，侵权必究}\par
 \vspace{0.5cm}
 {\scshape \small All Rights Reserved}
 \end{titlepage}
@@ -61,42 +62,53 @@
 %Decorating toc page
 \pagenumbering{roman} % Sets page number in toc, tot, tof
 \tableofcontents
-\addcontentsline{toc}{section}{目录}%note section here in the second bracket
+\addcontentsline{toc}{section}{Content}%note section here in the second bracket
 \clearpage
 \listoffigures
-\addcontentsline{toc}{section}{插图}
+\addcontentsline{toc}{section}{Figure}
 %\addcontentsline{toc}{chapter}{List of Figures}
 \clearpage
 \listoftables
-\addcontentsline{toc}{section}{表格}
+\addcontentsline{toc}{section}{Table}
 %\addcontentsline{toc}{chapter}{List of Tables}
 \clearpage
 
 %Writing your document here
 \newpage
 \pagenumbering{arabic}
-\section{第一个Section}
+\section{The Section}
 
 \newpage
-\section{第二个Section}
+\section{The second Section}
 
 \newpage
-\section{第三个Section}
+\section{The third Section}
 
 \newpage
-\section{第四个Section}
+\section{The fourth Section}
 
-%Bib refrences
- 这是一个 refrences\cite{7398117} 的例证。不过需要注意的是以下的 code 当中：
+\(\alpha \),
+
+
+%Bib references
+ This is a reference example, references\cite{7398117}
 
 \begin{lstlisting}[language = Python]
     \bibliography{mybib}
 \end{lstlisting}
-mybib 是一个名字为\space'.bib' 的 database,它必须放在和 Tex 一起的当前目录中。否则会出现，编译不通过。
-并且 {\textbackslash} usepackage cite 必须要在 preamble 当中提前设置。{\texttilde}
+mybib is bib database name with extension \space'.bib'. Here mybib.bib has to be in the same folder where {.tex} file locates.
 
 \bibliographystyle{plain}
 
 \bibliography{mybib}
+
+~\ref{fig1:figure1} is a good example.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width = 0.2\linewidth]{YinYang.jpg}
+\label{fig1:figure1}
+    \caption{this is figure 1}
+\end{figure}
 
 \end{document}

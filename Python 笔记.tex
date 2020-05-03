@@ -19,7 +19,8 @@
 
 % Fancyhdr details setup
 %\fancyhead[l]{我的Logo}% 2nd way of setting header and footer 
-\lhead{\includegraphics[width = 1cm]{YinYang.jpg}} % lhead = left head setup
+\lhead{\includegraphics[width = 1cm]{YinYang.jpg}} 
+% lhead = left head setup
 \fancyhead[c]{文档名称}
 \fancyhead[r]{文档密级}
 \lfoot{12-21-2019}
@@ -38,6 +39,8 @@
 \usepackage[xetex]{hyperref}
 \usepackage{xcolor}
 \newcommand{\pflred}[1]{\textcolor{red}{#1}}
+
+\usepackage{listings}
 
 \begin{document}
 
@@ -104,7 +107,28 @@ execute commands in IPython like in window cmd or linux Terminal.
 \%time 和 \%timeit：测量执行Python代码的时间
 \end{itemize}
 
+%————————————————————————————————————————————————————————————Django
+\newpage
+\section{Django}
+\subsection{Django html 路径}
+\begin{lstlisting}[language = python]
+path('', include("mainpage.urls")),
+\end{lstlisting}
+这里网站的 working directory 是 mainpage app 下的 folder.
 
+设置 css 或者图片等 static file 注意事项：\\
+\begin{enumerate}
+\item 在 app folder 下创建 static 文件夹，如同 templates 一样。
+\item 在 static 文件下创建与 app 同名的 appname 文件夹，将所有的 css，img 等放入文件夹中。
+\item html template 中 写入以下 code：
+\begin{lstlisting}[language = python] 
+{%load static%}, 
+具体语句中，写入 src or href 
+= “{% static ‘appname/style/stype.css’ %}”
+\end{lstlisting}
+注意这里的 appname 必须要写，这是用以区分，不同 app 使用的不同的 static files。Django 非常不错的地方，就在与如此，Django 可以帮助用户寻找相应的 app 下的 static files。
+
+\end{enumerate}
 
 
 
