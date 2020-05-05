@@ -35,28 +35,30 @@
 \usepackage{tocloft}
 \tocloftpagestyle{fancy}% to use fancy header and footer, otherwise the tocloft package will overdrive the fancy page setup.
 %\usepackage[titles]{tocloft}
-
+% extra packages you want to import to this tex file
+%===================================================
 \usepackage[xetex]{hyperref}
 \usepackage{xcolor}
 \newcommand{\pflred}[1]{\textcolor{red}{#1}}
-
 \usepackage{listings}
+\usepackage{cite}
+%extra packages ====================================
 
 \begin{document}
 
 %Making title page
 \begin{titlepage}
-\maketitle
-\pagenumbering{gobble}
-\centering
-\vspace{10cm}
-\includegraphics[width = 0.2\textwidth]{YinYang.jpg}\par
-\vspace{1cm}
-{\huge pengfei.li2017@outlook.com}\par
-\vspace{0.5cm}
-{\small 版权所有，侵权必究}\par
-\vspace{0.5cm}
-{\scshape \small All Rights Reserved}
+      \maketitle
+      \pagenumbering{gobble}
+      \centering
+      \vspace{10cm}
+      \includegraphics[width = 0.2\textwidth]{YinYang.jpg}\par
+      \vspace{1cm}
+      {\huge pengfei.li2017@outlook.com}\par
+      \vspace{0.5cm}
+      {\small 版权所有，侵权必究}\par
+      \vspace{0.5cm}
+      {\scshape \small All Rights Reserved}
 \end{titlepage}
 
 %Decorating toc page
@@ -94,44 +96,171 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 \section{IPython}
 \subsection{Useful commands}
 execute commands in IPython like in window cmd or linux Terminal.
-\begin{itemize}
-\item
-\%cd：改变当前的工作目录
-\item
-\%edit：打开编辑器，并关闭编辑器后执行键入的代码
-\item
-\%env：显示当前环境变量
-\item
-\%pip install [pkgs]：无需离开交互式shell，就可以安装软件包
-\item
-\%time 和 \%timeit：测量执行Python代码的时间
-\end{itemize}
+\begin{enumerate}
+      \item
+            \%cd改变当前的工作目录
+      \item
+            \%edit：打开编辑器，并关闭编辑器后执行键入的代码
+      \item
+            \%env：显示当前环境变量
+      \item
+            \%pip install [pkgs]：无需离开交互式shell，就可以安装软件包
+      \item
+            \%time 和 \%timeit：测量执行Python代码的时间
+\end{enumerate}
 
-%————————————————————————————————————————————————————————————Django
+%———————————————————————————————————————————————————————————Django
 \newpage
-\section{Django}
+\section{Django web development}
 \subsection{Django html 路径}
-\begin{lstlisting}[language = python]
+\begin{verbatim}
 path('', include("mainpage.urls")),
-\end{lstlisting}
+\end{verbatim}
 这里网站的 working directory 是 mainpage app 下的 folder.
-
 设置 css 或者图片等 static file 注意事项：\\
 \begin{enumerate}
-\item 在 app folder 下创建 static 文件夹，如同 templates 一样。
-\item 在 static 文件下创建与 app 同名的 appname 文件夹，将所有的 css，img 等放入文件夹中。
-\item html template 中 写入以下 code：
-\begin{lstlisting}[language = python] 
+      \item 在 app folder 下创建 static 文件夹，如同 templates 一样。
+      \item 在 static 文件下创建与 app 同名的 appname 文件夹，将所有的 css，img 等放入文件夹中。
+      \item html template 中 写入以下 code：
+            \begin{verbatim}[language = python] 
 {%load static%}, 
 具体语句中，写入 src or href 
 = “{% static ‘appname/style/stype.css’ %}”
-\end{lstlisting}
-注意这里的 appname 必须要写，这是用以区分，不同 app 使用的不同的 static files。Django 非常不错的地方，就在与如此，Django 可以帮助用户寻找相应的 app 下的 static files。
+\end{verbatim}
+            注意这里的 appname 必须要写，这是用以区分，不同 app 使用的不同的 static files。Django 非常不错的地方，就在与如此，Django 可以帮助用户寻找相应的 app 下的 static files。
 
 \end{enumerate}
 
+\subsection{ Serving Django app over Apache}
+\subsubsection{For pi with default python3.5}
+There are less problems with python 3.5, however when I attempted to execute the same procedures on my linux computer with Conda environment, there are many issues which will be explained in next section.
+\begin{enumerate}
+      \item install required packages:
+            \begin{enumerate}
+                  \item update Ubuntu's package using: sudo apt-get update
+                  \item install apache2 and wsgi using: sudo apt-get install python3-pip apache2 libapache2-mod-wsgi-py3
+            \end{enumerate}
+      \item Create your Django Apps. Create these Apps using the Django server, because during serving, the server will check your python codes for all Apps.
+      \item Prepare server configurations. There are three parts. The configuration file is in: \begin{verbatim}
+      /etc/apache2/sites-available/000-default.conf
+    \end{verbatim}
+            \begin{enumerate}
+                  \item granting access to wsgi.py file
+                  \item configure WSGIDaemonProcess directory
+                  \item tell apache to serve static files and media files
+            \end{enumerate}
+            for example what I have on my pi:
+            \begin{verbatim}
+<VirtualHost *:80>
+# The ServerName directive sets the request scheme, hostname and port that
+# the server uses to identify itself. This is used when creating
+# redirection URLs. In the context of virtual hosts, the ServerName
+# specifies what hostname must appear in the request's Host: header to
+# match this virtual host. For the default virtual host (this file) this
+# value is not decisive as it is used as a last resort host regardless.
+# However, you must set it for any further virtual host explicitly.
+#ServerName www.example.com
 
+ServerAdmin webmaster@localhost
+DocumentRoot /var/www/html
 
+<Directory /home/pi/Desktop/website_venv/WebsiteProject/django_project>
+    <Files wsgi.py>
+    Require all granted
+    </Files>
+</Directory>
+
+WSGIDaemonProcess mysite python-path=/home/pi/Desktop/website_venv/WebsiteProject python-home=/home/pi/Desktop/website_venv
+WSGIProcessGroup mysite
+WSGIScriptAlias / /home/pi/Desktop/website_venv/WebsiteProject/django_project/wsgi.py
+
+Alias /static /home/pi/Desktop/website_venv/WebsiteProject/static
+<Directory /home/pi/Desktop/website_venv/WebsiteProject/static>
+Require all granted
+</Directory>
+
+Alias /media /home/pi/Desktop/website_venv/WebsiteProject/media
+<Directory /home/pi/Desktop/website_venv/WebsiteProject/media>
+Require all granted
+</Directory>
+\end{verbatim}
+      \item check any syntax errors, using: sudo apache2ctl configtest
+      \item Update settings.py by add:
+            \begin{verbatim}[language=python]
+            STATIC_URL = '/static/'
+            STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+        \end{verbatim}
+      \item collect all static files to a root static folder using: python manage.py collectstatic
+      \item some references: \url{https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-apache-and-mod_wsgi-on-ubuntu-16-04} \url{https://omkarpathak.in/2018/11/11/ubuntu-django-apache/}
+      \item potential problems during development:
+      \item \textcolor{red}{documents permission issue for uploading files:} for example:
+
+            \begin{verbatim}
+PermissionError at /ProcessPlot/
+[Errno 13] Permission denied: 
+'/home/pi/Desktop/website_venv/WebsiteProject/ProcessPlot/documents/YinYang.jpg'
+Request Method:	POST
+Request URL:	http://192.168.0.102/ProcessPlot/
+Django Version:	2.2.12
+Exception Type:	PermissionError
+Exception Value:	
+[Errno 13] Permission denied: 
+'/home/pi/Desktop/website_venv/WebsiteProject/ProcessPlot/documents/YinYang.jpg'
+Exception Location:	
+/home/pi/Desktop/website_venv/lib/python3.5
+/site-packages/django/core/files/storage.py in _save, line 266
+Python Executable:	/home/pi/Desktop/website_venv/bin/python
+Python Version:	3.5.3
+Python Path:	
+['/home/pi/Desktop/website_venv/WebsiteProject',
+'/usr/lib/python35.zip',
+'/usr/lib/python3.5',
+'/usr/lib/python3.5/plat-arm-linux-gnueabihf',
+'/usr/lib/python3.5/lib-dynload',
+'/home/pi/Desktop/website_venv/lib/python3.5/site-packages']
+Server time:	Sun, 3 May 2020 13:49:26 +0000
+        \end{verbatim}
+            \vspace{1mm}
+            to solve this problem, use the following command:
+            \begin{verbatim}
+pi@raspberrypi:~/Desktop/website_venv $ 
+chmod 664 WebsiteProject/sci_compute/static/sci_compute/img.png 
+pi@raspberrypi:~/Desktop/website_venv $ 
+sudo chown :www-data WebsiteProject/sci_compute/static/sci_compute/img.png 
+        \end{verbatim}
+            if you encounter other permission problems like database or a folder, use same operations, but for folder you have to use \textbf{chmod 775}.
+
+      \item run apache server: sudo /etc/init.d/apache2 restart, other commands on line don't work on my pi.
+      \item
+
+\end{enumerate}
+
+\subsubsection{For Elementary OS with Conda environment}
+\pflred{When I tried to follow the same procedure mentioned above in my Elementary OS, and then I visit 192.168.0.112, which is the ip address of my own OS. The browser always show there is a misconfigure sort of errors, but the apache server runs OK.} To solve the problem, first check /var/log/apache2/error.log using vscode \textbf{(a good thing with vscode is that it automatically updates its content while it servers the website)}. In error.log, check the information.
+\begin{verbatim}
+[Mon May 04 11:21:23.839582 2020] [wsgi:error] 
+[pid 4137:tid 140078815827712] [remote 192.168.0.112:50656] 
+ModuleNotFoundError: No module named 'django'
+
+[Mon May 04 11:23:05.274582 2020] [mpm_event:notice] [pid 7359:tid 140297128098752] AH00489: 
+Apache/2.4.29 (Ubuntu) mod_wsgi/4.5.17 Python/3.6 configured -- resuming normal operations
+\end{verbatim}
+
+After search with Google, all information points to a malfunctioning virtual environment, I get into the virtual environment where my project locates, and run python manage.py runserver, it seems there is no problem. When run apache2 server, the problem shows again. Keep searching Google, with the information in the error.log, the problem is associated with python version. When using the default installation, sudo apt-get install python3-pip apache2 libapache2-mod-wsgi-py3, the \pflred{libapache2-mod-wsgi-py3} looks for the default python3 version in my system (by checking the version, you have to deactivate Conda environment, which gives a (base) in terminal). The default python3 is python3.6, which is the mod-wsgi-py3 compiles according to, as what is shown in the error.log.\\
+
+The problem is now clear, it is the virtual environment I created in the Conda environment, where the python default version is python 3.7 (check the version using python --version). But the wsgi is compiled with the system python3.6. Therefore, these two versions are not compatible. \\
+
+To solve the problem, deactivate the Conda environment, and use the system python3.6 to create a separate virtual environment, and copy (cp file target dir) to the new virtual environment. Update the 000-default.conf configuration file for the apache server. rerun the server, and it works. However, for a linux system with a python version of 3.7 how to install a lower version of python, to accommodate the libapache2-mod-wsgi-py3 module from the official Ubuntu repo, that is another topic.\\
+
+\textbf{\pflred{For fire wall issues,}} the Elementary OS installed on my laptop uses \emph{ iptables } for firewall. When you want to access your website from other computers, you have to allow traffic to and from the server, in my case, the server is my labtop with Apache2 server. The command to do this is: \pflred{iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT}
+
+%References=========================================
+\newpage
+\section{文献}
+\cite{10cm}
+\bibliographystyle{plain}
+\bibliography{mybib}
+%References=========================================
 
 
 \end{document}

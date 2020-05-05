@@ -39,6 +39,7 @@
 \usepackage{cite}
 \usepackage{listings}
 \usepackage{graphicx}
+\usepackage{xcolor}
 
 
 \begin{document}
@@ -84,7 +85,7 @@
 \section{第三个Section}
 
 \newpage
-\section{第四个Section}
+\section{文献的用法}
 
 %Bib refrences
  这是一个 refrences\cite{7398117} 的例证。不过需要注意的是以下的 code 当中：
@@ -93,10 +94,17 @@
     \bibliography{mybib}
 \end{lstlisting}
 mybib 是一个名字为\space'.bib' 的 database,它必须放在和 Tex 一起的当前目录中。否则会出现，编译不通过。
-并且 {\textbackslash} usepackage cite 必须要在 preamble 当中提前设置。{\texttilde}
+并且 {\textbackslash} usepackage cite 必须要在 preamble 当中提前设置。{\texttilde}\\
+
+注意如果 xelatex, bibtex, xelatex, xelatex,这种方式 compile tex 文档，要注意，文献的三要素都要有，否则就会出错，文献的\textcolor{red}{四要素}包括：
+\begin{enumerate}
+    \item \textbackslash usepackage\{cite\}, to use the cite function, you have to include cite module in the tex file.
+    \item \textbackslash cite\{123456\}， here 123456 means a reference number in the .bib file.
+    \item \textbackslash bibliographystyle\{plain\} 设置引用文献的个格式。
+    \item \textbackslash bibliography{mybib} 读取文献源文件，注意 mybib.bib 必须在当前目录中。
+\end{enumerate}
 
 \bibliographystyle{plain}
-
 \bibliography{mybib}
 
 \end{document}

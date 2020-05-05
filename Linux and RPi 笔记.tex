@@ -46,6 +46,7 @@
 \usepackage[xetex]{hyperref}
 %\usepackage[hyphenbreaks]{breakurl}
 \usepackage[hyphens]{url}
+\usepackage{cite}
 
 
 %============================================= packages
@@ -57,17 +58,17 @@
 
 %Making title page
 \begin{titlepage}
-\maketitle
-\pagenumbering{gobble}
-\centering
-\vspace{10cm}
-\includegraphics[width = 0.2\textwidth]{YinYang.jpg}\par
-\vspace{1cm}
-{\huge pengfei.li2017@outlook.com}\par
-\vspace{0.5cm}
-{\small 版权所有，侵权必究}\par
-\vspace{0.5cm}
-{\scshape \small All Rights Reserved}
+      \maketitle
+      \pagenumbering{gobble}
+      \centering
+      \vspace{10cm}
+      \includegraphics[width = 0.2\textwidth]{YinYang.jpg}\par
+      \vspace{1cm}
+      {\huge pengfei.li2017@outlook.com}\par
+      \vspace{0.5cm}
+      {\small 版权所有，侵权必究}\par
+      \vspace{0.5cm}
+      {\scshape \small All Rights Reserved}
 \end{titlepage}
 
 %Decorating toc page
@@ -92,11 +93,11 @@
 \pagenumbering{arabic}
 \section{Linux/Elementary OS 在 Nvidia 安装之后的急救}
 \begin{enumerate}
-\item 安装完 Nvidia 显卡 driver 之后发现，系统无法正常启动，且在一个 command window 下反复循环。
-\item google 寻找了相关措施，也不能够解决问题。
-\item ctr alt F1 反复按压也结局不了问题。
-\item F12 is for booting bios for my Huawei Laptop.
-\item 胡乱按了一些 F1 键盘，终于进入 console，执行 sudo apt-get purge nvidia*
+      \item 安装完 Nvidia 显卡 driver 之后发现，系统无法正常启动，且在一个 command window 下反复循环。
+      \item google 寻找了相关措施，也不能够解决问题。
+      \item ctr alt F1 反复按压也结局不了问题。
+      \item F12 is for booting bios for my Huawei Laptop.
+      \item 胡乱按了一些 F1 键盘，终于进入 console，执行 sudo apt-get purge nvidia*
 
 \end{enumerate}
 
@@ -139,24 +140,24 @@ Nmap done: 256 IP addresses (8 hosts up) scanned in 4.61 seconds\\
 windows10 home edition 不允许 remote desktop，虽然系统有这个选项询问你是否允许 remote desktop，但是在另一个地方又告诉你 home edition 是没有这个功能的。
 以下是解决方案：
 \begin{enumerate}
-\item 使用 TightVNC:
-网址：\url{https://www.tightvnc.com/download.php}
-在 windows10 直接安装 TightVNC，一路安装不用改任何东西，安装完毕。设置require authentication，设置密码。\\
-\pflred
-{TightVNC 的一些问题：
-\begin{itemize}
-\item VNC 有些时候不稳定，需要重启系统，有可能是 VPN 的问题。
-\item VNC 用 laptop 的 touch pad 右键不好使，只能用鼠标。
-\end{itemize}
-}
+      \item 使用 TightVNC:
+            网址：\url{https://www.tightvnc.com/download.php}
+            在 windows10 直接安装 TightVNC，一路安装不用改任何东西，安装完毕。设置require authentication，设置密码。\\
+            \pflred
+            {TightVNC 的一些问题：
+                  \begin{enumerate}
+                        \item VNC 有些时候不稳定，需要重启系统，有可能是 VPN 的问题。
+                        \item VNC 用 laptop 的 touch pad 右键不好使，只能用鼠标。
+                  \end{enumerate}
+            }
 
 
 
-\item 使用 RDPwrapper 在 github 下又下载:\\
-不推荐这个使用方法，CSDN 上很多人反映不可用，而且下载的时候 chrome 会报错。另外还有修改注册表的，不推荐使用。
-\item 在 linux 系统下安装 remmina:\\
-sudo apt-get install remmina remmina-plugin-*\\
-注意尽量需找 apt-get 支持的语句，snap 和 dnf 都不好用，估计是支持其他 linux distro 的。
+      \item 使用 RDPwrapper 在 github 下又下载:\\
+            不推荐这个使用方法，CSDN 上很多人反映不可用，而且下载的时候 chrome 会报错。另外还有修改注册表的，不推荐使用。
+      \item 在 linux 系统下安装 remmina:\\
+            sudo apt-get install remmina remmina-plugin-*\\
+            注意尽量需找 apt-get 支持的语句，snap 和 dnf 都不好用，估计是支持其他 linux distro 的。
 
 
 
@@ -166,19 +167,19 @@ sudo apt-get install remmina remmina-plugin-*\\
 \subsection{Windows10 remote linux}
 需要注意的是我的 raspberryPi 直接允许 VNC 即可，直接通过正常的 windows remote desktop 即可远程登录。但是elementory os 不具有这个功能，于是需要安装。
 \begin{enumerate}
-\item 在 linux 上直接安装 xrpd：sudo apt-get install xrdp。
-\item 直接登录，出现内部错误：这个是由于 VPN 的作用，关掉在开启即可。
-\item 登录之后发现闪退：这是由于 linux 没有安装 xfce4。\\ sudo apt-get install xfce4。\par
-百度搜索，通过 windows RDP 连接 Linux。
+      \item 在 linux 上直接安装 xrpd：sudo apt-get install xrdp。
+      \item 直接登录，出现内部错误：这个是由于 VPN 的作用，关掉在开启即可。
+      \item 登录之后发现闪退：这是由于 linux 没有安装 xfce4。\\ sudo apt-get install xfce4。\par
+            百度搜索，通过 windows RDP 连接 Linux。
 
-\pflred{如果这时候出现所说的Ubuntu安中装的xrdp，桌面共享设置为允许，虚拟机设置的是桥接，虚拟机内外可以互相ping 通；
-在Windows下用 mstsc 连接Ubuntu桌面，跳出账号密码页面，登录后自动退出（闪退）的解决方法：sudo apt-get install xfce4
-echo xfce4-session > \~/.xsession
-touch .session
-sudo vim /etc/xrdp/startwm.sh
-在. /etc/X11/Xsession前面加
-xfce4-session
-然后重启 sudo service xrdp restart。}
+            \pflred{如果这时候出现所说的Ubuntu安中装的xrdp，桌面共享设置为允许，虚拟机设置的是桥接，虚拟机内外可以互相ping 通；
+                  在Windows下用 mstsc 连接Ubuntu桌面，跳出账号密码页面，登录后自动退出（闪退）的解决方法：sudo apt-get install xfce4
+                  echo xfce4-session > \~/.xsession
+                  touch .session
+                  sudo vim /etc/xrdp/startwm.sh
+                  在. /etc/X11/Xsession前面加
+                  xfce4-session
+                  然后重启 sudo service xrdp restart。}
 
 
 \end{enumerate}
@@ -188,24 +189,24 @@ xfce4-session
 
 find + [target directory] + [options] + [file or folder name]:
 \begin{enumerate}
-\item
-target directory:
-Period (.): Specifies the current and all nested folders.
-Forward Slash (/): Specifies the entire filesystem.
-Tilde (\~): Specifies the active user's home directory.
-\item
-options:
--name or -atime n
-\item
-file or folder name:
-* start sign represents wild card.
-\item
-one example:
-
-find . -name *.tex
-\item
-reference:
-\url	{https://www.lifewire.com/uses-of-linux-command-find-2201100}
+      \item
+            target directory:
+            Period (.): Specifies the current and all nested folders.
+            Forward Slash (/): Specifies the entire filesystem.
+            Tilde (\~): Specifies the active user's home directory.
+      \item
+            options:
+            -name or -atime n
+      \item
+            file or folder name:
+            * start sign represents wild card.
+      \item one example:
+            find . -name *.tex
+      \item another example:
+            find /home -name wsgi.py
+      \item
+            reference:
+            \url	{https://www.lifewire.com/uses-of-linux-command-find-2201100}
 
 
 \end{enumerate}
@@ -215,9 +216,9 @@ reference:
 The best way I found so far is to use: sftp pi@192.168.0.109, then using the same login password as in: ssh pi@192.168.0.109.
 Some common commands are listed below:
 \begin{enumerate}
-\item ls: ls list the remote directory. lls is for the local.
-\item pwd: present working directory. lpwd: local present working directory.
-\item get: copy a file into the current local working directory.
+      \item ls: ls list the remote directory. lls is for the local.
+      \item pwd: present working directory. lpwd: local present working directory.
+      \item get: copy a file into the current local working directory.
 
 \end{enumerate}
 
@@ -232,52 +233,71 @@ Some common commands are listed below:
 \subsection{键盘命令(直接 prcess 键盘) ctl A + key 系列}
 例如：ctr A + k，是 kill 当前的命令。具体如下：
 \begin{enumerate}
-\item ctr A + k: kill the current screen.
-\item ctr A + ?: help window for ctr A commands.
-\item ctr A + [ or escapekey: start copy mode, you can use arrow key to move up and down, if you press enter key, they you are selecting something for copy. If you don't want any copy, press escape key again.
-\item ctr A + ]: paste the selected things.
-\item reference: google scroll inside screen or pause output.
+      \item ctr A + k: kill the current screen.
+      \item ctr A + ?: help window for ctr A commands.
+      \item ctr A + [ or escapekey: start copy mode, you can use arrow key to move up and down, if you press enter key, they you are selecting something for copy. If you don't want any copy, press escape key again.
+      \item ctr A + ]: paste the selected things.
+      \item reference: google scroll inside screen or pause output.
 \end{enumerate}
 \subsection{Console 命令 （在 console 当中输入） screen -[key]}
 例如：screen -ls:list all screens active.具体如下：
 \begin{enumerate}
-\item screen -list: = screen -ls
-\item screen -S screenname: create a screen with a name "screenname"
-\item screen: create a screen without a specified name, but the system will automatically assign a name to the screen.
-\item screen -d screenid/screenname: detach a screen locally or remotely. If you have a session running locally, you have to start a new terminal somewhere else to detach it.
-\item screen -r screenid/screenname: reattach a screen.
-\item reference: google 15 linux screen command for dealing terminal sessions.
+      \item screen -list: = screen -ls
+      \item screen -S screenname: create a screen with a name "screenname"
+      \item screen: create a screen without a specified name, but the system will automatically assign a name to the screen.
+      \item screen -d screenid/screenname: detach a screen locally or remotely. If you have a session running locally, you have to start a new terminal somewhere else to detach it.
+      \item screen -r screenid/screenname: reattach a screen.
+      \item reference: google 15 linux screen command for dealing terminal sessions.
 \end{enumerate}
+
+
+\section{Linux VPN 用法}
+\cite{0040s}
+本文具体采用西游 VPN \url{xiyou360.net}.
+\begin{enumerate}
+      \item 下载并解压 Ciso AnyConnect
+      \item 解压文档
+      \item cd 到指定文件夹，执行 cd vpn
+      \item 执行 sudo .\textbackslash vpn\textunderscore install.sh
+\end{enumerate}
+
+\section{ Linux firewall iptables}
+see the reference : \begin{verbatim}
+      https://www.howtogeek.com/177621/the-beginners-guide-to-iptables-the-linux-firewall/     
+\end{verbatim}
+
+
+
 
 \section{Raspberry Pi: Pi Model 3B+ V1.3}
 \subsection{Check hostname and other information}
 \textcolor{red}{hostnamectl:}\\
-   Static hostname: pengfei-KLV-WX9\\
-         Icon name: computer-laptop\\
-           Chassis: laptop\\
-        Machine ID: 82aadb731d60458194911154ce5fef65\\
-           Boot ID: 4405f29ae34248918f4b9b3b6d387a8b\\
-  Operating System: elementary OS 5.0 Juno\\
-            Kernel: Linux 4.15.0-70-generic\\
-      Architecture: x86-64\\
+Static hostname: pengfei-KLV-WX9\\
+Icon name: computer-laptop\\
+Chassis: laptop\\
+Machine ID: 82aadb731d60458194911154ce5fef65\\
+Boot ID: 4405f29ae34248918f4b9b3b6d387a8b\\
+Operating System: elementary OS 5.0 Juno\\
+Kernel: Linux 4.15.0-70-generic\\
+Architecture: x86-64\\
 \textcolor{red}{whoami:} this command is to check my username.
 \subsection{Login to pi with ssh}
 Using command: ssh pi@IPAddress, here pi is your user name, you can check ipaddress with command, \textit{hostname -I}. ssh is in small case.
 \subsection{Functions and commands}
 \begin{enumerate}
-\item check Raspberry Pi information: \textit{pinout}
+      \item check Raspberry Pi information: \textit{pinout}
 \end{enumerate}
 \subsection{Transfer file to and from pi (or Linux system)}
 Detailed information can be referenced to \url{https://www.raspberrypi.org/documentation/remote-access/}. 具体来说有一下几种形式：
 \begin{enumerate}
-\item Between Linux and Windows: SFTP，SSH File Transfer Protocal. 本质来说人然是 SSH 服务，Linux 系统需要开启 SSH 服务。\textcolor{red}{Windows 系统安装 WinSCP}。
-\item Between Linux and Linux: 同上 SFTP，\textcolor{red}{不过这时候推荐 FileZilla}.
-\item Between Linux and Linux: 除了上述 SFTP 之外，还可以使用 SCP，Secure Copy 来使用。比如：scp myfile.txt pi@192.168.0.100：(这里是 destination directory, 该语句代表 /home/pi，如果是其他 directory，只需要在：后边加上制定的 directory 即可。) Copying from remote directory to local directory: scp pi@192.168.0.100：myfile.txt. 
+      \item Between Linux and Windows: SFTP，SSH File Transfer Protocal. 本质来说人然是 SSH 服务，Linux 系统需要开启 SSH 服务。\textcolor{red}{Windows 系统安装 WinSCP}。
+      \item Between Linux and Linux: 同上 SFTP，\textcolor{red}{不过这时候推荐 FileZilla}.
+      \item Between Linux and Linux: 除了上述 SFTP 之外，还可以使用 SCP，Secure Copy 来使用。比如：scp myfile.txt pi@192.168.0.100：(这里是 destination directory, 该语句代表 /home/pi，如果是其他 directory，只需要在：后边加上制定的 directory 即可。) Copying from remote directory to local directory: scp pi@192.168.0.100：myfile.txt.
 \end{enumerate}
 
 \subsection{RPI 搭配 Django 网站框架问题及解决方案}
 \begin{enumerate}
-\item \emph{Importing the numpy c-extensions failed. and Original error was: libf77blas.so.3: cannot open shared object file: No such file or directory.} 错误解决方案：\textcolor{red}{sudo apt-get install libatlas-base-dev} 。原因很可能是 RPI 系统中缺少 libff77blas.so.3 的系统文件，我是通过 google 得出的这个解决方案。
+      \item \emph{Importing the numpy c-extensions failed. and Original error was: libf77blas.so.3: cannot open shared object file: No such file or directory.} 错误解决方案：\textcolor{red}{sudo apt-get install libatlas-base-dev} 。原因很可能是 RPI 系统中缺少 libff77blas.so.3 的系统文件，我是通过 google 得出的这个解决方案。
 \end{enumerate}
 
 
@@ -291,11 +311,11 @@ Detailed information can be referenced to \url{https://www.raspberrypi.org/docum
 一般来说，git repo 在网站上直接创建，然后在 local directory 当中使用 git clone 命令进行下载，如果不存在 git cloud 端的 directory 怎么办呢？\\
 参照：\begin{sloppypar}\url{https://help.github.com/en/github/importing-your-projects-to-github/adding-an-existing-project-to-github-using-the-command-line}\end{sloppypar}
 \begin{enumerate}
-\item Create a new repository. \textcolor{blue}{这一步是必须的，如果 git 网站没有这个 repository，push 会出现各种错误。}
-\item Locally git init.
-\item git add . and git commit
-\item git remote add origin remote (repo URL, this URL can be SSH or HTTP, SSH will be better, it won't ask your credentials everytime.)
-\item git push \textcolor{red}{-u} origin master. (This -u option must be there, otherwise, git pull will ask you which branch you want to merge with.)
+      \item Create a new repository. \textcolor{blue}{这一步是必须的，如果 git 网站没有这个 repository，push 会出现各种错误。}
+      \item Locally git init.
+      \item git add . and git commit
+      \item git remote add origin remote (repo URL, this URL can be SSH or HTTP, SSH will be better, it won't ask your credentials everytime.)
+      \item git push \textcolor{red}{-u} origin master. (This -u option must be there, otherwise, git pull will ask you which branch you want to merge with.)
 \end{enumerate}
 
 
@@ -304,8 +324,8 @@ Detailed information can be referenced to \url{https://www.raspberrypi.org/docum
 
 \subsection{接下来要做的事情}
 \begin{enumerate}
-\item 1
-\item 2
+      \item 1
+      \item 2
 
 
 \end{enumerate}
@@ -314,8 +334,8 @@ Detailed information can be referenced to \url{https://www.raspberrypi.org/docum
 \section{第三个Section}
 
 \newpage
-\section{第四个Section}
-
-
+\section{文献}
+\bibliographystyle{plain}
+\bibliography{mybib}
 
 \end{document}
