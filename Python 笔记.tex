@@ -85,6 +85,7 @@ using command: \textit{pip install -i https://pypi.tuna.tsinghua.edu.cn/simple s
 or set the mirror permanently using:\\
 pip install pip -U\\
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
 \subsection{alias 别名}
 有些情况下，在 linux 系统中，你会发现 pip 安装了某个 module，结果直接在 terminal 运行该 module 命令，却没有任何反映。这时运行 python3 -m IPython 却可以运行，这是因为 IPython 没有注册到系统中，需要运行，alias ipython = “python3 -m IPython”
 %————————————————————————————————————————————————————————————主要内容
@@ -253,6 +254,48 @@ The problem is now clear, it is the virtual environment I created in the Conda e
 To solve the problem, deactivate the Conda environment, and use the system python3.6 to create a separate virtual environment, and copy (cp file target dir) to the new virtual environment. Update the 000-default.conf configuration file for the apache server. rerun the server, and it works. However, for a linux system with a python version of 3.7 how to install a lower version of python, to accommodate the libapache2-mod-wsgi-py3 module from the official Ubuntu repo, that is another topic.\\
 
 \textbf{\pflred{For fire wall issues,}} the Elementary OS installed on my laptop uses \emph{ iptables } for firewall. When you want to access your website from other computers, you have to allow traffic to and from the server, in my case, the server is my labtop with Apache2 server. The command to do this is: \pflred{iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT}
+
+
+
+\subsection{Plot data to html}
+Two methods can be used for plotting data to a html file, there have their own pros and cons.
+\subsubsection{Plot to a local directory}
+\subsubsection{Plot to memory or buffer}
+
+\subsection{Create a new django app}
+The right sequences are listed below:
+\begin{enumerate}
+      \item run python manage.py startapp newapp
+      \item cp previous\textunderscore app\textunderscore folder \textbackslash urls.py newapp, and change corresponding scripts.
+      \item copy the url name after views.method to the main page index template.
+      \item In django\textunderscore project (our main website project folder): copy class name for example, ProcessPlotOptimizeConfig from the app.py file in the newapp folder, to settings.py file, add the new app to the system settings.
+      \item In django \textunderscore project: modify the urls.py file, add a new line as below: \begin{verbatim}
+      path("process_plot_optimize/", include("process_plot_optimize.urls")),
+      \end{verbatim} \pflred{this is very import, I forgot one time, the server gives reverse error. and you have to restart the server.}
+\end{enumerate}
+
+
+
+
+\section{Next step}
+\begin{enumerate}
+      \item go through my new app, the process\_plot\_optimize app, edit the template models and other parts.
+      \item go through django session, to see how we deal with concurrence.
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 %References=========================================
 \newpage
