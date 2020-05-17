@@ -269,7 +269,7 @@ The right sequences are listed below:
       \item cp previous\textunderscore app\textunderscore folder \textbackslash urls.py newapp, and change corresponding scripts.
       \item copy the url name after views.method to the main page index template.
       \item In django\textunderscore project (our main website project folder): copy class name for example, ProcessPlotOptimizeConfig from the app.py file in the newapp folder, to settings.py file, add the new app to the system settings.
-      \item In django \textunderscore project: modify the urls.py file, add a new line as below: \begin{verbatim}
+      \item In django \textunderscore project (the main project): modify the urls.py file, add a new line as below: \begin{verbatim}
       path("process_plot_optimize/", include("process_plot_optimize.urls")),
       \end{verbatim} \pflred{this is very import, I forgot one time, the server gives reverse error. and you have to restart the server.}
 \end{enumerate}

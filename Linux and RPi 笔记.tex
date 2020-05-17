@@ -322,9 +322,6 @@ Detailed information can be referenced to \url{https://www.raspberrypi.org/docum
 \newpage
 \section{vscode IDE 的一些用法}
 Technically, vs code is not an IDE, integrated development environment, it is an editor just like notepad but with many extensions.
-
-
-
 Figure \ref{integrated shell} shows how to integrate shell into vscode.
 \begin{figure}[h]
       \centering
@@ -332,14 +329,23 @@ Figure \ref{integrated shell} shows how to integrate shell into vscode.
       \caption{integrated shell}
       \label{integrated shell}
 \end{figure}
+\subsection{vscode upgrade}
 
+\section{Update modules like vscode}
+To update a module, e.g. vscode, you can directly use sudo apt-get, as shown in Figure\ref{Update Vscode}.
+\begin{figure}[h]
+      \centering
+      \includegraphics[width = 14cm]{Figures/UpdateVscode.png}
+      \caption{Update Vscode}
+      \label{Update Vscode}
+\end{figure}
 
 \section{第二个Section}
 
 \subsection{接下来要做的事情}
 \begin{enumerate}
-      \item 1
-      \item 2
+      \item plot to a digital buffer for Django app, so that you don't have to save a figure and load it. This can potentially solve the problem of concurrency, which means multiple users can access the app at the same time, and generate the image at the same time, but load it at different times, these two users can get an image that is created by the other one.
+      \item Pyinstaller has upgraded to a new version, I should try it.
 
 
 \end{enumerate}
