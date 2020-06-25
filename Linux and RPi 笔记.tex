@@ -98,8 +98,21 @@
       \item ctr alt F1 反复按压也结局不了问题。
       \item F12 is for booting bios for my Huawei Laptop.
       \item 胡乱按了一些 F1 键盘，终于进入 console，执行 sudo apt-get purge nvidia*
-
 \end{enumerate}
+
+20200625, second time, I am trying to install nvidia driver, this time, I got the same infinite loop problem. \pflred{never ever try sudo apt install nvidia-340 again, this is a pretty older driver, it does not support my huawei nvidia driver.} Faulty behaviors and solutions are listed below:
+\begin{enumerate}
+      \item run nvidia-smi command, this is a command normally for checking if the driver is installed correctly or not.
+      \item system reminds you to install these two packages, nvidia-340 and nvidia-utils-390, then I did run sudo apt install nvidia-340, and then it stuck.
+      \item try to follow the aforementioned tips by keeping pressing the F1 key, it doesn't work.
+      \item Esc helps gets into Debian window, also called grub mode, like recovery mode in windows? Try to google Ubuntu RecoveryMode, it shows detailed instruction to booting into recovery mode.
+      \item \pflred{Esc key is the critical button} to get into recovery mode. However, we have to check what is this UEFI, because for BIOS, you enter grub mode by pressing shift key.
+      \item \url{https://itsfoss.com/check-uefi-or-bios/}, here it gives a clear explanation of UEFI and BIOS mode. 
+      \item After you entered the grub mode, then select an option to enter into the pure console mode, and purge all nvidia setup.
+\end{enumerate}
+
+
+
 
 
 \section{Linux common commands}
