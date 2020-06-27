@@ -275,13 +275,25 @@ The right sequences are listed below:
 \end{enumerate}
 
 
+\section{pyinstaller app}
+Basic procedures are listed below:
+\begin{enumerate}
+      \item create a virtual environment by typing command: python3 -m venv venv\textunderscore name
+      \item activate the virtual environment by typing comand: source bin activate
+      \item OK, after I started to work on it, I found pyinstaller can't do cross-compile, as written in their homepage: PyInstaller is tested against Windows, Mac OS X, and GNU\textbackslash Linux. \pflred{However, it is not a cross compiler: to make a Windows app you run PyInstaller in Windows; to make a GNULinux app you run it in GNU Linux, etc. }
+\end{enumerate}
 
+\section{Artificial intelligence and machine learning topic}
+\subsection{ What is integration}
+Integration is a mathematical method to calculate an area under a curve. Quadrature is word for describing this action. I have tried trapezoidal method,a polynomial of a degree 1. Numerical integration in wiki has a full description of various methods.
 
 \section{Next step}
 \begin{enumerate}
       \item go through my new app, the process\_plot\_optimize app, edit the template models and other parts.
       \item go through django session, to see how we deal with concurrence.
-      \item pyinstaller to create windows app.
+      \item pyinstaller to create windows app. (closed, can't create .exe in linux for windows, except some complex setups that I don't think very convenient.)
+      \item Bokhem plotting.
+      \item AI pytorch training.
 \end{enumerate}
 
 
